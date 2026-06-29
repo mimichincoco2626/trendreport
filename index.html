@@ -7,30 +7,43 @@
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --pink: #F03F8E;
-    --pink-light: #FDE8F3;
-    --pink-mid: #F8B8D8;
-    --pink-dark: #B5006A;
-    --gray-0: #ffffff;
-    --gray-1: #f7f7f5;
-    --gray-2: #eeede9;
-    --gray-3: #d8d7d1;
-    --gray-4: #888780;
-    --gray-5: #52514e;
-    --gray-6: #2c2c2a;
-    --text-primary: #0b0b0b;
-    --text-secondary: #52514e;
-    --text-muted: #898781;
-    --border: rgba(11,11,11,0.10);
-    --radius: 8px;
-    --blue: #2a78d6;
-    --green: #1baf7a;
-    --amber: #eda100;
-    --red: #e34948;
+    /* Brand */
+    --pink:       #F03F8E;
+    --pink-glow:  rgba(240,63,142,0.18);
+    --pink-dim:   rgba(240,63,142,0.12);
+    --pink-badge: rgba(240,63,142,0.20);
+    --pink-text:  #FF79B8;
+
+    /* Dark surfaces */
+    --bg-page:    #0f0f12;
+    --bg-card:    #18181f;
+    --bg-card2:   #1f1f28;
+    --bg-hover:   #25252f;
+    --bg-input:   #1a1a22;
+
+    /* Text */
+    --text-primary:   #f0eff4;
+    --text-secondary: #b0aec0;
+    --text-muted:     #6e6c82;
+
+    /* Borders */
+    --border:         rgba(255,255,255,0.07);
+    --border-strong:  rgba(255,255,255,0.12);
+
+    /* Status */
+    --up:    #3dd68c;
+    --down:  #ff6b6b;
+
+    /* Chart accent colours */
+    --blue:  #5b9cf6;
+    --green: #3dd68c;
+    --amber: #f5a623;
+
+    --radius: 10px;
   }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
-    background: var(--gray-1);
+    background: var(--bg-page);
     color: var(--text-primary);
     min-height: 100vh;
   }
@@ -52,8 +65,8 @@
 
   /* DASHBOARD SUBHEADER */
   .dash-subheader {
-    background: var(--gray-0);
-    border-bottom: 0.5px solid var(--border);
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
     padding: 14px 2rem;
     display: flex;
     align-items: center;
@@ -75,8 +88,8 @@
   .section-label {
     font-size: 11px;
     font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 0.08em;
+    color: var(--pink-text);
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
     margin-top: 2rem;
@@ -85,9 +98,9 @@
 
   /* LATEST CARD */
   .latest-card {
-    background: var(--gray-0);
+    background: var(--bg-card);
     border-radius: 12px;
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border-strong);
     padding: 1.5rem;
     margin-bottom: 1.5rem;
   }
@@ -98,12 +111,13 @@
     margin-bottom: 0.75rem;
   }
   .issue-badge {
-    background: var(--pink-light);
-    color: var(--pink-dark);
+    background: var(--pink-badge);
+    color: var(--pink-text);
     font-size: 12px;
     font-weight: 500;
     padding: 3px 12px;
     border-radius: var(--radius);
+    border: 1px solid rgba(240,63,142,0.3);
   }
   .latest-date { font-size: 12px; color: var(--text-muted); }
   .latest-title {
@@ -117,57 +131,57 @@
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 10px;
-    border-top: 0.5px solid var(--border);
+    border-top: 1px solid var(--border);
     padding-top: 1.25rem;
   }
   .metric { text-align: center; }
   .metric-val { font-size: 22px; font-weight: 500; color: var(--text-primary); }
   .metric-lbl { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
   .metric-cmp { font-size: 11px; margin-top: 3px; }
-  .up { color: #0ca30c; }
-  .down { color: #e34948; }
+  .up { color: var(--up); }
+  .down { color: var(--down); }
   .neutral { color: var(--text-muted); }
 
   /* KPI GRID */
   .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
   .kpi {
-    background: var(--gray-0);
+    background: var(--bg-card2);
     border-radius: var(--radius);
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     padding: 1rem 1.25rem;
   }
-  .kpi-label { font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
-  .kpi-value { font-size: 26px; font-weight: 500; color: var(--text-primary); line-height: 1.1; }
+  .kpi-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; letter-spacing: 0.03em; }
+  .kpi-value { font-size: 26px; font-weight: 500; color: var(--pink-text); line-height: 1.1; }
   .kpi-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
-  .kpi-sub.up { color: #0ca30c; }
-  .kpi-sub.down { color: #e34948; }
+  .kpi-sub.up { color: var(--up); }
+  .kpi-sub.down { color: var(--down); }
 
   /* CHARTS */
   .charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 1.5rem; }
   .chart-card {
-    background: var(--gray-0);
+    background: var(--bg-card);
     border-radius: 12px;
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     padding: 1.25rem;
   }
   .chart-wide {
-    background: var(--gray-0);
+    background: var(--bg-card);
     border-radius: 12px;
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     padding: 1.25rem;
     margin-bottom: 1.5rem;
   }
   .chart-title { font-size: 13px; font-weight: 500; color: var(--text-secondary); margin-bottom: 0.75rem; }
-  .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--text-secondary); margin-bottom: 10px; }
+  .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
   .legend span { display: flex; align-items: center; gap: 5px; }
   .legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 
 
   /* TOP 5 */
   .top5-card {
-    background: var(--gray-0);
+    background: var(--bg-card);
     border-radius: 12px;
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     margin-bottom: 1.5rem;
     overflow: hidden;
   }
@@ -176,8 +190,10 @@
     align-items: flex-start;
     gap: 16px;
     padding: 1.25rem 1.5rem;
-    border-bottom: 0.5px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.12s;
   }
+  .top5-row:hover { background: var(--bg-hover); }
   .top5-row:last-child { border-bottom: none; }
   .top5-rank {
     font-size: 22px;
@@ -198,32 +214,31 @@
   .top5-rate {
     font-size: 15px;
     font-weight: 500;
-    color: var(--pink);
+    color: var(--pink-text);
     margin-left: auto;
   }
   .top5-title {
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 400;
     color: var(--text-primary);
     line-height: 1.5;
     margin-bottom: 8px;
   }
   .top5-bar-wrap {
-    background: var(--gray-2);
+    background: rgba(255,255,255,0.07);
     border-radius: 4px;
-    height: 4px;
+    height: 3px;
     margin-bottom: 6px;
     overflow: hidden;
   }
   .top5-bar {
     height: 100%;
-    background: var(--pink);
+    background: linear-gradient(90deg, var(--pink) 0%, #ff79b8 100%);
     border-radius: 4px;
     transition: width 0.4s ease;
   }
   .top5-stats { font-size: 12px; color: var(--text-muted); }
 
-  /* HISTORY TABLE */
   /* HISTORY ACCORDION */
   .history-search-bar {
     display: flex;
@@ -235,24 +250,27 @@
   .history-search-bar input[type="text"] {
     flex: 1;
     min-width: 200px;
-    height: 34px;
-    border: 0.5px solid var(--border);
+    height: 36px;
+    border: 1px solid var(--border-strong);
     border-radius: var(--radius);
     padding: 0 12px;
     font-size: 13px;
-    background: var(--gray-0);
+    background: var(--bg-input);
     color: var(--text-primary);
     outline: none;
   }
-  .history-search-bar input[type="text"]:focus { border-color: var(--pink); }
+  .history-search-bar input[type="text"]::placeholder { color: var(--text-muted); }
+  .history-search-bar input[type="text"]:focus { border-color: var(--pink); box-shadow: 0 0 0 3px var(--pink-glow); }
   .history-search-count { font-size: 12px; color: var(--text-muted); white-space: nowrap; }
   .acc-group {
-    background: var(--gray-0);
+    background: var(--bg-card);
     border-radius: 12px;
-    border: 0.5px solid var(--border);
+    border: 1px solid var(--border);
     margin-bottom: 8px;
     overflow: hidden;
+    transition: border-color 0.15s;
   }
+  .acc-group.open { border-color: var(--border-strong); }
   .acc-header {
     display: flex;
     align-items: center;
@@ -261,27 +279,37 @@
     cursor: pointer;
     user-select: none;
     gap: 12px;
-    background: var(--gray-0);
-    transition: background 0.1s;
+    background: transparent;
+    transition: background 0.12s;
   }
-  .acc-header:hover { background: var(--gray-1); }
-  .acc-header-left { display: flex; align-items: center; gap: 10px; }
+  .acc-header:hover { background: var(--bg-hover); }
+  .acc-group.open .acc-header { background: var(--bg-card2); }
+  .acc-header-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
   .acc-range {
     font-size: 13px;
     font-weight: 500;
     color: var(--text-primary);
   }
   .acc-meta { font-size: 12px; color: var(--text-muted); }
+  .acc-avg-badge {
+    background: var(--pink-badge);
+    color: var(--pink-text);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(240,63,142,0.25);
+  }
   .acc-chevron {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
     transition: transform 0.2s;
     flex-shrink: 0;
   }
-  .acc-group.open .acc-chevron { transform: rotate(180deg); }
+  .acc-group.open .acc-chevron { transform: rotate(180deg); color: var(--pink-text); }
   .acc-body {
     display: none;
-    border-top: 0.5px solid var(--border);
+    border-top: 1px solid var(--border);
     overflow-x: auto;
   }
   .acc-group.open .acc-body { display: block; }
@@ -294,22 +322,23 @@
   table.hist th {
     text-align: left;
     padding: 8px 12px;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 500;
     color: var(--text-muted);
-    letter-spacing: 0.04em;
-    background: var(--gray-1);
-    border-bottom: 0.5px solid var(--border);
+    letter-spacing: 0.06em;
+    background: var(--bg-card2);
+    border-bottom: 1px solid var(--border);
     white-space: nowrap;
+    text-transform: uppercase;
   }
   table.hist td {
     padding: 10px 12px;
-    border-bottom: 0.5px solid var(--border);
+    border-bottom: 1px solid var(--border);
     vertical-align: middle;
     color: var(--text-primary);
   }
   table.hist tr:last-child td { border-bottom: none; }
-  table.hist tr:hover td { background: var(--gray-1); }
+  table.hist tr:hover td { background: var(--bg-hover); }
   .col-no   { width: 68px; }
   .col-date { width: 92px; }
   .col-title { }
@@ -324,22 +353,23 @@
     display: inline-block;
     padding: 2px 8px;
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
   }
-  .rate-hi  { background: #e8f5e9; color: #2e7d32; }
-  .rate-mid { background: #fff8e1; color: #f57f17; }
-  .rate-lo  { background: #fce4ec; color: #b71c1c; }
+  .rate-hi  { background: rgba(61,214,140,0.15); color: #3dd68c; }
+  .rate-mid { background: rgba(245,166,35,0.15); color: #f5a623; }
+  .rate-lo  { background: rgba(255,107,107,0.15); color: #ff6b6b; }
   .issue-no {
     display: inline-block;
-    background: var(--pink-light);
-    color: var(--pink-dark);
+    background: var(--pink-badge);
+    color: var(--pink-text);
     font-size: 11px;
     font-weight: 500;
     padding: 2px 8px;
     border-radius: 4px;
+    border: 1px solid rgba(240,63,142,0.25);
   }
-  .title-cell { color: var(--text-primary); line-height: 1.4; }
+  .title-cell { color: var(--text-secondary); line-height: 1.4; }
   .no-results { text-align: center; padding: 2.5rem; color: var(--text-muted); font-size: 13px; }
 
   /* FOOTER */
@@ -348,6 +378,8 @@
     padding: 2rem 0 1rem;
     font-size: 12px;
     color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 1rem;
   }
 
   @media (max-width: 680px) {
@@ -355,7 +387,7 @@
     .charts-row { grid-template-columns: 1fr; }
     .latest-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     .dash { padding: 1rem; }
-    .history-toolbar { gap: 8px; }
+    .acc-header-left { gap: 6px; }
     .col-ocr, .col-open { display: none; }
   }
 </style>
@@ -367,7 +399,7 @@
 </header>
 
 <div class="dash-subheader">
-  <h1>電子報成效儀表板</h1>
+  <h1 style="color:var(--text-primary)">電子報成效儀表板</h1>
   <span>更新至 NO.79・2026/6/25</span>
 </div>
 
@@ -387,9 +419,9 @@
   <div class="chart-wide">
     <div class="chart-title">開信率 &amp; 點擊率走勢（近 10 期）</div>
     <div class="legend">
-      <span><span class="legend-dot" style="background:#2a78d6"></span>開信率</span>
-      <span><span class="legend-dot" style="background:#1baf7a"></span>點擊率</span>
-      <span><span class="legend-dot" style="background:#eda100"></span>開點率</span>
+      <span><span class="legend-dot" style="background:#5b9cf6"></span>開信率</span>
+      <span><span class="legend-dot" style="background:#3dd68c"></span>點擊率</span>
+      <span><span class="legend-dot" style="background:#f5a623"></span>開點率</span>
     </div>
     <div style="position:relative;width:100%;height:240px;">
       <canvas id="trendChart" role="img" aria-label="近10期開信率、點擊率、開點率折線圖">近10期開信率介於 40–55%，點擊率介於 0.8–3%。</canvas>
@@ -532,20 +564,20 @@ document.getElementById('overallKpi').innerHTML =
   '<div class="kpi"><div class="kpi-label">最高開信率</div><div class="kpi-value">' + maxOpen.openRate.toFixed(1) + '%</div><div class="kpi-sub up">' + maxOpen.no + '・' + maxOpen.date + '</div></div>';
 
 const recent10 = allData.slice(0,10).reverse();
-const gridColor = 'rgba(0,0,0,0.06)';
-const tickColor = '#888780';
+const gridColor = 'rgba(255,255,255,0.06)';
+const tickColor = '#6e6c82';
 
 new Chart(document.getElementById('trendChart'), {
   type: 'line',
   data: {
     labels: recent10.map(d=>d.no),
     datasets: [
-      { label:'開信率', data:recent10.map(d=>d.openRate), borderColor:'#2a78d6', backgroundColor:'rgba(42,120,214,0.08)', borderWidth:2, pointRadius:4, pointBackgroundColor:'#2a78d6', tension:0.3, fill:true },
-      { label:'點擊率', data:recent10.map(d=>d.clickRate), borderColor:'#1baf7a', backgroundColor:'rgba(27,175,122,0.06)', borderWidth:2, pointRadius:4, pointBackgroundColor:'#1baf7a', tension:0.3, fill:true, borderDash:[4,3] },
-      { label:'開點率', data:recent10.map(d=>d.ocRate), borderColor:'#eda100', backgroundColor:'rgba(237,161,0,0.05)', borderWidth:2, pointRadius:4, pointBackgroundColor:'#eda100', tension:0.3, fill:true, borderDash:[2,2] }
+      { label:'開信率', data:recent10.map(d=>d.openRate), borderColor:'#5b9cf6', backgroundColor:'rgba(91,156,246,0.10)', borderWidth:2, pointRadius:4, pointBackgroundColor:'#5b9cf6', tension:0.3, fill:true },
+      { label:'點擊率', data:recent10.map(d=>d.clickRate), borderColor:'#3dd68c', backgroundColor:'rgba(61,214,140,0.08)', borderWidth:2, pointRadius:4, pointBackgroundColor:'#3dd68c', tension:0.3, fill:true, borderDash:[4,3] },
+      { label:'開點率', data:recent10.map(d=>d.ocRate), borderColor:'#f5a623', backgroundColor:'rgba(245,166,35,0.07)', borderWidth:2, pointRadius:4, pointBackgroundColor:'#f5a623', tension:0.3, fill:true, borderDash:[2,2] }
     ]
   },
-  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false}}, scales:{ x:{ticks:{color:tickColor,font:{size:11},autoSkip:false,maxRotation:0},grid:{color:gridColor}}, y:{ticks:{color:tickColor,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},min:0} } }
+  options: { responsive:true, maintainAspectRatio:false, plugins:{legend:{display:false},tooltip:{mode:'index',intersect:false,backgroundColor:'#1f1f28',titleColor:'#f0eff4',bodyColor:'#b0aec0',borderColor:'rgba(255,255,255,0.12)',borderWidth:1}}, scales:{ x:{ticks:{color:tickColor,font:{size:11},autoSkip:false,maxRotation:0},grid:{color:gridColor}}, y:{ticks:{color:tickColor,font:{size:11},callback:v=>v+'%'},grid:{color:gridColor},min:0} } }
 });
 
 
@@ -701,7 +733,8 @@ function renderAccordion() {
       '<div class="acc-header" onclick="toggleAcc(' + gi + ')">' +
         '<div class="acc-header-left">' +
           '<span class="acc-range">' + label + '</span>' +
-          '<span class="acc-meta">' + dateRange + '・共 ' + grp.length + ' 期・平均開信率 ' + avgOR + '%</span>' +
+          '<span class="acc-meta">' + dateRange + '・共 ' + grp.length + ' 期</span>' +
+          '<span class="acc-avg-badge">平均開信率 ' + avgOR + '%</span>' +
         '</div>' +
         '<span class="acc-chevron">▼</span>' +
       '</div>' +
