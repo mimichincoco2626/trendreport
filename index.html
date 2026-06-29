@@ -129,7 +129,7 @@
   }
   .latest-metrics {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 10px;
     border-top: 1px solid var(--border);
     padding-top: 1.25rem;
@@ -547,10 +547,9 @@ function vsAvgHtml(cur, avg, suffix='%') {
 
 document.getElementById('latestMetrics').innerHTML =
   '<div class="metric"><div class="metric-val">' + latest.sent.toLocaleString() + '</div><div class="metric-lbl">成功發送</div>' + deltaHtml(latest.sent, prev.sent, '') + '</div>' +
-  '<div class="metric"><div class="metric-val">' + latest.open.toLocaleString() + '</div><div class="metric-lbl">開信人數</div>' + deltaHtml(latest.open, prev.open, '') + '</div>' +
-  '<div class="metric"><div class="metric-val">' + latest.openRate.toFixed(2) + '%</div><div class="metric-lbl">開信率</div>' + vsAvgHtml(latest.openRate, AVG_OPEN) + '</div>' +
-  '<div class="metric"><div class="metric-val">' + latest.click.toLocaleString() + '</div><div class="metric-lbl">點擊人數</div>' + deltaHtml(latest.click, prev.click, '') + '</div>' +
-  '<div class="metric"><div class="metric-val">' + latest.clickRate.toFixed(2) + '%</div><div class="metric-lbl">點擊率</div>' + vsAvgHtml(latest.clickRate, AVG_CLICK) + '</div>';
+  '<div class="metric"><div class="metric-val" style="color:var(--pink-text)">' + latest.open.toLocaleString() + '</div><div class="metric-lbl">開信人數</div>' + deltaHtml(latest.open, prev.open, '') + '</div>' +
+  '<div class="metric"><div class="metric-val" style="color:var(--pink-text)">' + latest.openRate.toFixed(2) + '%</div><div class="metric-lbl">開信率</div>' + vsAvgHtml(latest.openRate, AVG_OPEN) + '</div>' +
+  '<div class="metric"><div class="metric-val">' + latest.ocRate.toFixed(2) + '%</div><div class="metric-lbl">開點率</div>' + vsAvgHtml(latest.ocRate, AVG_OC) + '</div>';
 
 const totalSent = allData.reduce((a,d)=>a+d.sent,0);
 const avgOpen = (allData.reduce((a,d)=>a+d.openRate,0)/allData.length).toFixed(1);
@@ -711,7 +710,7 @@ function renderAccordion() {
   const wrap = document.getElementById('accordionWrap');
 
   if (filtered.length === 0) {
-    wrap.innerHTML = '<div style="text-align:center;padding:2.5rem;color:var(--text-muted);font-size:13px;background:var(--gray-0);border-radius:12px;border:0.5px solid var(--border)">找不到符合條件的期次</div>';
+    wrap.innerHTML = '<div style="text-align:center;padding:2.5rem;color:var(--text-muted);font-size:13px;background:var(--bg-card);border-radius:12px;border:1px solid var(--border)">找不到符合條件的期次</div>';
     return;
   }
 
@@ -753,7 +752,7 @@ function toggleAcc(gi) {
 renderAccordion();
 // Top 5 open rate
 const top5 = [...allData].sort((a,b)=>b.openRate-a.openRate).slice(0,5);
-const medals = ['🥇','🥈','🥉','④','⑤'];
+const medals = ['🥇','🥈','🥉','<span style="font-size:18px;font-weight:500;color:var(--text-muted)">④</span>','<span style="font-size:18px;font-weight:500;color:var(--text-muted)">⑤</span>'];
 document.getElementById('top5Card').innerHTML = top5.map((d,i) => {
   const title = titleMap[d.no] || '—';
   const barW = Math.round((d.openRate / top5[0].openRate) * 100);
