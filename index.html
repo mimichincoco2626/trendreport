@@ -129,7 +129,7 @@
   }
   .latest-metrics {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 10px;
     border-top: 1px solid var(--border);
     padding-top: 1.25rem;
@@ -143,7 +143,7 @@
   .neutral { color: var(--text-muted); }
 
   /* KPI GRID */
-  .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 1.5rem; }
   .kpi {
     background: var(--bg-card2);
     border-radius: var(--radius);
@@ -448,84 +448,84 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
 const allData = [
-  { no:'NO79', date:'2026/6/25', sent:12451, open:5077, click:108, openRate:40.78, clickRate:0.80, ocRate:2.13 },
-  { no:'NO78', date:'2026/6/18', sent:16044, open:6599, click:212, openRate:41.13, clickRate:1.30, ocRate:3.21 },
-  { no:'NO77', date:'2026/6/11', sent:15899, open:8681, click:372, openRate:54.60, clickRate:2.30, ocRate:4.29 },
-  { no:'NO76', date:'2026/6/4',  sent:15806, open:6633, click:155, openRate:41.97, clickRate:0.98, ocRate:2.34 },
-  { no:'NO75', date:'2026/5/28', sent:15352, open:6994, click:468, openRate:45.56, clickRate:3.00, ocRate:6.69 },
-  { no:'NO74', date:'2026/5/21', sent:15245, open:7268, click:441, openRate:47.67, clickRate:2.89, ocRate:6.07 },
-  { no:'NO73', date:'2026/5/14', sent:15626, open:8393, click:453, openRate:55.09, clickRate:2.90, ocRate:5.40 },
-  { no:'NO72', date:'2026/5/7',  sent:15950, open:7087, click:314, openRate:44.43, clickRate:1.97, ocRate:4.43 },
-  { no:'NO71', date:'2026/4/30', sent:15229, open:6769, click:360, openRate:45.70, clickRate:2.36, ocRate:5.32 },
-  { no:'NO70', date:'2026/4/23', sent:15194, open:6042, click:234, openRate:38.58, clickRate:0.93, ocRate:2.42 },
-  { no:'NO69', date:'2026/4/16', sent:15257, open:5536, click:295, openRate:36.19, clickRate:1.90, ocRate:5.25 },
-  { no:'NO68', date:'2026/4/9',  sent:15310, open:6055, click:282, openRate:39.79, clickRate:0.97, ocRate:2.44 },
-  { no:'NO67', date:'2026/4/2',  sent:15372, open:6345, click:289, openRate:40.45, clickRate:1.55, ocRate:3.84 },
-  { no:'NO66', date:'2026/3/26', sent:14567, open:5172, click:140, openRate:35.60, clickRate:0.96, ocRate:2.71 },
-  { no:'NO65', date:'2026/3/19', sent:14525, open:6229, click:372, openRate:42.83, clickRate:2.56, ocRate:5.98 },
-  { no:'NO64', date:'2026/3/12', sent:14577, open:6409, click:370, openRate:43.74, clickRate:2.47, ocRate:5.64 },
-  { no:'NO63', date:'2026/3/5',  sent:14181, open:6371, click:417, openRate:44.64, clickRate:1.72, ocRate:3.86 },
-  { no:'NO62', date:'2026/2/26', sent:13089, open:6436, click:307, openRate:37.10, clickRate:1.32, ocRate:3.57 },
-  { no:'NO61', date:'2026/2/19', sent:12859, open:4627, click:74,  openRate:37.29, clickRate:1.78, ocRate:4.21 },
-  { no:'NO60', date:'2026/2/12', sent:12920, open:5450, click:230, openRate:41.90, clickRate:1.77, ocRate:4.22 },
-  { no:'NO59', date:'2026/2/5',  sent:12856, open:4859, click:115, openRate:37.30, clickRate:2.28, ocRate:0.85 },
-  { no:'NO58', date:'2026/1/29', sent:11836, open:5364, click:318, openRate:44.78, clickRate:2.67, ocRate:5.96 },
-  { no:'NO57', date:'2026/1/22', sent:11855, open:5572, click:227, openRate:46.89, clickRate:4.01, ocRate:1.88 },
-  { no:'NO56', date:'2026/1/15', sent:11838, open:5335, click:234, openRate:44.55, clickRate:4.13, ocRate:1.98 },
-  { no:'NO55', date:'2026/1/8',  sent:11792, open:5838, click:440, openRate:49.47, clickRate:7.53, ocRate:3.72 },
-  { no:'NO54', date:'2026/1/1',  sent:3783,  open:1848, click:186, openRate:48.51, clickRate:10.07,ocRate:4.94 },
-  { no:'NO53', date:'2025/12/25',sent:3772,  open:1845, click:184, openRate:48.83, clickRate:9.97, ocRate:4.87 },
-  { no:'NO52', date:'2025/12/18',sent:3758,  open:1620, click:137, openRate:43.08, clickRate:8.42, ocRate:3.63 },
-  { no:'NO51', date:'2025/12/11',sent:3748,  open:1744, click:187, openRate:45.76, clickRate:6.08, ocRate:2.78 },
-  { no:'NO50', date:'2025/12/4', sent:3741,  open:1846, click:266, openRate:49.41, clickRate:14.29,ocRate:7.06},
-  { no:'NO49', date:'2025/11/27',sent:3720,  open:1748, click:138, openRate:49.52, clickRate:9.41, ocRate:4.66 },
-  { no:'NO48', date:'2025/11/20',sent:3720,  open:1781, click:288, openRate:47.98, clickRate:9.43, ocRate:4.53 },
-  { no:'NO47', date:'2025/11/13',sent:3706,  open:1771, click:292, openRate:47.47, clickRate:9.63, ocRate:4.57 },
-  { no:'NO46', date:'2025/11/6', sent:3690,  open:1745, click:219, openRate:46.86, clickRate:7.71, ocRate:3.61 },
-  { no:'NO45', date:'2025/10/30',sent:3680,  open:1548, click:84,  openRate:42.02, clickRate:5.45, ocRate:2.29 },
-  { no:'NO44', date:'2025/10/23',sent:3667,  open:1711, click:112, openRate:46.77, clickRate:6.55, ocRate:3.06 },
-  { no:'NO43', date:'2025/10/16',sent:3662,  open:1605, click:125, openRate:43.95, clickRate:7.79, ocRate:3.42 },
-  { no:'NO42', date:'2025/10/9', sent:3635,  open:1485, click:58,  openRate:40.95, clickRate:3.91, ocRate:1.60 },
-  { no:'NO41', date:'2025/10/2', sent:3622,  open:1763, click:156, openRate:48.85, clickRate:8.85, ocRate:4.32 },
-  { no:'NO40', date:'2025/9/25', sent:3572,  open:1862, click:95,  openRate:52.30, clickRate:5.10, ocRate:2.67 },
-  { no:'NO39', date:'2025/9/18', sent:3554,  open:1705, click:96,  openRate:48.14, clickRate:5.63, ocRate:2.71 },
-  { no:'NO38', date:'2025/9/11', sent:3524,  open:1496, click:60,  openRate:42.60, clickRate:4.01, ocRate:1.71 },
-  { no:'NO37', date:'2025/9/4',  sent:3494,  open:1489, click:69,  openRate:42.62, clickRate:4.63, ocRate:1.97 },
-  { no:'NO36', date:'2025/8/28', sent:3482,  open:1455, click:72,  openRate:41.94, clickRate:4.95, ocRate:2.08 },
-  { no:'NO35', date:'2025/8/21', sent:3464,  open:1498, click:76,  openRate:43.45, clickRate:5.07, ocRate:2.20 },
-  { no:'NO34', date:'2025/8/14', sent:3444,  open:1712, click:108, openRate:49.85, clickRate:6.31, ocRate:3.15 },
-  { no:'NO33', date:'2025/8/7',  sent:3438,  open:1599, click:166, openRate:46.67, clickRate:10.38,ocRate:4.58 },
-  { no:'NO32', date:'2025/7/31', sent:3401,  open:1659, click:111, openRate:48.82, clickRate:6.69, ocRate:3.27 },
-  { no:'NO31', date:'2025/7/24', sent:3378,  open:1650, click:97,  openRate:49.01, clickRate:5.88, ocRate:2.88 },
-  { no:'NO30', date:'2025/7/17', sent:3346,  open:1619, click:138, openRate:48.53, clickRate:8.52, ocRate:4.14 },
-  { no:'NO29', date:'2025/7/10', sent:3291,  open:1664, click:112, openRate:50.73, clickRate:6.73, ocRate:3.41 },
-  { no:'NO28', date:'2025/7/3',  sent:3277,  open:1591, click:117, openRate:48.71, clickRate:7.35, ocRate:3.58 },
-  { no:'NO27', date:'2025/6/26', sent:3206,  open:1583, click:145, openRate:49.59, clickRate:9.16, ocRate:4.54 },
-  { no:'NO26', date:'2025/6/19', sent:3161,  open:1616, click:130, openRate:51.30, clickRate:9.72, ocRate:4.98 },
-  { no:'NO25', date:'2025/6/12', sent:3133,  open:1513, click:91,  openRate:48.46, clickRate:6.01, ocRate:2.91 },
-  { no:'NO24', date:'2025/6/5',  sent:3089,  open:1510, click:111, openRate:49.01, clickRate:7.35, ocRate:3.60 },
-  { no:'NO23', date:'2025/5/29', sent:3007,  open:1443, click:89,  openRate:48.13, clickRate:6.17, ocRate:2.97 },
-  { no:'NO22', date:'2025/5/22', sent:2963,  open:1492, click:159, openRate:50.59, clickRate:10.66,ocRate:5.39 },
-  { no:'NO21', date:'2025/5/15', sent:2856,  open:1442, click:120, openRate:50.72, clickRate:8.32, ocRate:4.22 },
-  { no:'NO20', date:'2025/5/8',  sent:2800,  open:1385, click:181, openRate:49.78, clickRate:6.93, ocRate:3.45 },
-  { no:'NO19', date:'2025/5/1',  sent:2732,  open:1398, click:162, openRate:51.34, clickRate:11.59,ocRate:5.95 },
-  { no:'NO18', date:'2025/4/24', sent:2647,  open:1323, click:92,  openRate:50.15, clickRate:6.95, ocRate:3.49 },
-  { no:'NO17', date:'2025/4/17', sent:2624,  open:1282, click:138, openRate:49.08, clickRate:10.76,ocRate:5.28 },
-  { no:'NO16', date:'2025/4/10', sent:2560,  open:1295, click:105, openRate:50.84, clickRate:8.11, ocRate:4.12 },
-  { no:'NO15', date:'2025/4/3',  sent:2506,  open:1014, click:89,  openRate:40.63, clickRate:8.78, ocRate:3.57 },
-  { no:'NO14', date:'2025/3/27', sent:2622,  open:1100, click:132, openRate:44.35, clickRate:12.00,ocRate:5.32 },
-  { no:'NO13', date:'2025/3/20', sent:2445,  open:1239, click:161, openRate:50.80, clickRate:12.99,ocRate:6.60 },
-  { no:'NO12', date:'2025/3/12', sent:2434,  open:1063, click:141, openRate:43.93, clickRate:13.26,ocRate:6.08 },
-  { no:'NO11', date:'2025/3/5',  sent:2411,  open:976,  click:57,  openRate:40.84, clickRate:5.84, ocRate:2.38 },
-  { no:'NO10', date:'2025/2/27', sent:2031,  open:740,  click:30,  openRate:40.90, clickRate:5.83, ocRate:2.39 },
-  { no:'NO9',  date:'2025/2/20', sent:1803,  open:881,  click:109, openRate:52.17, clickRate:12.61,ocRate:6.58 },
-  { no:'NO8',  date:'2025/2/13', sent:1612,  open:843,  click:148, openRate:52.56, clickRate:17.56,ocRate:9.23 },
-  { no:'NO7',  date:'2025/2/6',  sent:1490,  open:653,  click:67,  openRate:44.15, clickRate:11.18,ocRate:4.94 },
-  { no:'NO6',  date:'2025/1/30', sent:1456,  open:750,  click:82,  openRate:51.76, clickRate:10.93,ocRate:5.66 },
-  { no:'NO5',  date:'2025/1/23', sent:1430,  open:779,  click:72,  openRate:54.78, clickRate:9.24, ocRate:5.06 },
-  { no:'NO3',  date:'2025/1/9',  sent:1317,  open:696,  click:164, openRate:54.33, clickRate:17.06,ocRate:9.27 },
-  { no:'NO2',  date:'2025/1/2',  sent:1062,  open:534,  click:94,  openRate:49.26, clickRate:20.66,ocRate:9.43 },
-  { no:'NO1',  date:'2024/12/26',sent:576,   open:295,  click:102, openRate:51.22, clickRate:10.92,ocRate:5.38 },
+  { no:'NO79', date:'2026/6/25', sent:12451, open:5077, click:108, unsub:0, openRate:40.78, clickRate:0.80, ocRate:2.13 },
+  { no:'NO78', date:'2026/6/18', sent:16044, open:6599, click:212, unsub:0, openRate:41.13, clickRate:1.30, ocRate:3.21 },
+  { no:'NO77', date:'2026/6/11', sent:15899, open:8681, click:372, unsub:0, openRate:54.60, clickRate:2.30, ocRate:4.29 },
+  { no:'NO76', date:'2026/6/4',  sent:15806, open:6633, click:155, unsub:0, openRate:41.97, clickRate:0.98, ocRate:2.34 },
+  { no:'NO75', date:'2026/5/28', sent:15352, open:6994, click:468, unsub:0, openRate:45.56, clickRate:3.00, ocRate:6.69 },
+  { no:'NO74', date:'2026/5/21', sent:15245, open:7268, click:441, unsub:0, openRate:47.67, clickRate:2.89, ocRate:6.07 },
+  { no:'NO73', date:'2026/5/14', sent:15626, open:8393, click:453, unsub:0, openRate:55.09, clickRate:2.90, ocRate:5.40 },
+  { no:'NO72', date:'2026/5/7',  sent:15950, open:7087, click:314, unsub:0, openRate:44.43, clickRate:1.97, ocRate:4.43 },
+  { no:'NO71', date:'2026/4/30', sent:15229, open:6769, click:360, unsub:0, openRate:45.70, clickRate:2.36, ocRate:5.32 },
+  { no:'NO70', date:'2026/4/23', sent:15194, open:6042, click:234, unsub:3, openRate:38.58, clickRate:0.93, ocRate:2.42 },
+  { no:'NO69', date:'2026/4/16', sent:15257, open:5536, click:295, unsub:4, openRate:36.19, clickRate:1.90, ocRate:5.25 },
+  { no:'NO68', date:'2026/4/9',  sent:15310, open:6055, click:282, unsub:9, openRate:39.79, clickRate:0.97, ocRate:2.44 },
+  { no:'NO67', date:'2026/4/2',  sent:15372, open:6345, click:289, unsub:4, openRate:40.45, clickRate:1.55, ocRate:3.84 },
+  { no:'NO66', date:'2026/3/26', sent:14567, open:5172, click:140, unsub:1, openRate:35.60, clickRate:0.96, ocRate:2.71 },
+  { no:'NO65', date:'2026/3/19', sent:14525, open:6229, click:372, unsub:4, openRate:42.83, clickRate:2.56, ocRate:5.98 },
+  { no:'NO64', date:'2026/3/12', sent:14577, open:6409, click:370, unsub:14, openRate:43.74, clickRate:2.47, ocRate:5.64 },
+  { no:'NO63', date:'2026/3/5',  sent:14181, open:6371, click:417, unsub:7, openRate:44.64, clickRate:1.72, ocRate:3.86 },
+  { no:'NO62', date:'2026/2/26', sent:13089, open:6436, click:307, unsub:3, openRate:37.10, clickRate:1.32, ocRate:3.57 },
+  { no:'NO61', date:'2026/2/19', sent:12859, open:4627, click:74, unsub:2,  openRate:37.29, clickRate:1.78, ocRate:4.21 },
+  { no:'NO60', date:'2026/2/12', sent:12920, open:5450, click:230, unsub:7, openRate:41.90, clickRate:1.77, ocRate:4.22 },
+  { no:'NO59', date:'2026/2/5',  sent:12856, open:4859, click:115, unsub:4, openRate:37.30, clickRate:2.28, ocRate:0.85 },
+  { no:'NO58', date:'2026/1/29', sent:11836, open:5364, click:318, unsub:7, openRate:44.78, clickRate:2.67, ocRate:5.96 },
+  { no:'NO57', date:'2026/1/22', sent:11855, open:5572, click:227, unsub:9, openRate:46.89, clickRate:4.01, ocRate:1.88 },
+  { no:'NO56', date:'2026/1/15', sent:11838, open:5335, click:234, unsub:4, openRate:44.55, clickRate:4.13, ocRate:1.98 },
+  { no:'NO55', date:'2026/1/8',  sent:11792, open:5838, click:440, unsub:8, openRate:49.47, clickRate:7.53, ocRate:3.72 },
+  { no:'NO54', date:'2026/1/1',  sent:3783,  open:1848, click:186, unsub:1, openRate:48.51, clickRate:10.07,ocRate:4.94 },
+  { no:'NO53', date:'2025/12/25',sent:3772,  open:1845, click:184, unsub:1, openRate:48.83, clickRate:9.97, ocRate:4.87 },
+  { no:'NO52', date:'2025/12/18',sent:3758,  open:1620, click:137, unsub:1, openRate:43.08, clickRate:8.42, ocRate:3.63 },
+  { no:'NO51', date:'2025/12/11',sent:3748,  open:1744, click:187, unsub:1, openRate:45.76, clickRate:6.08, ocRate:2.78 },
+  { no:'NO50', date:'2025/12/4', sent:3741,  open:1846, click:266, unsub:0, openRate:49.41, clickRate:14.29,ocRate:7.06},
+  { no:'NO49', date:'2025/11/27',sent:3720,  open:1748, click:138, unsub:1, openRate:49.52, clickRate:9.41, ocRate:4.66 },
+  { no:'NO48', date:'2025/11/20',sent:3720,  open:1781, click:288, unsub:1, openRate:47.98, clickRate:9.43, ocRate:4.53 },
+  { no:'NO47', date:'2025/11/13',sent:3706,  open:1771, click:292, unsub:2, openRate:47.47, clickRate:9.63, ocRate:4.57 },
+  { no:'NO46', date:'2025/11/6', sent:3690,  open:1745, click:219, unsub:0, openRate:46.86, clickRate:7.71, ocRate:3.61 },
+  { no:'NO45', date:'2025/10/30',sent:3680,  open:1548, click:84, unsub:0,  openRate:42.02, clickRate:5.45, ocRate:2.29 },
+  { no:'NO44', date:'2025/10/23',sent:3667,  open:1711, click:112, unsub:1, openRate:46.77, clickRate:6.55, ocRate:3.06 },
+  { no:'NO43', date:'2025/10/16',sent:3662,  open:1605, click:125, unsub:0, openRate:43.95, clickRate:7.79, ocRate:3.42 },
+  { no:'NO42', date:'2025/10/9', sent:3635,  open:1485, click:58, unsub:0,  openRate:40.95, clickRate:3.91, ocRate:1.60 },
+  { no:'NO41', date:'2025/10/2', sent:3622,  open:1763, click:156, unsub:2, openRate:48.85, clickRate:8.85, ocRate:4.32 },
+  { no:'NO40', date:'2025/9/25', sent:3572,  open:1862, click:95, unsub:3,  openRate:52.30, clickRate:5.10, ocRate:2.67 },
+  { no:'NO39', date:'2025/9/18', sent:3554,  open:1705, click:96, unsub:2,  openRate:48.14, clickRate:5.63, ocRate:2.71 },
+  { no:'NO38', date:'2025/9/11', sent:3524,  open:1496, click:60, unsub:0,  openRate:42.60, clickRate:4.01, ocRate:1.71 },
+  { no:'NO37', date:'2025/9/4',  sent:3494,  open:1489, click:69, unsub:2,  openRate:42.62, clickRate:4.63, ocRate:1.97 },
+  { no:'NO36', date:'2025/8/28', sent:3482,  open:1455, click:72, unsub:0,  openRate:41.94, clickRate:4.95, ocRate:2.08 },
+  { no:'NO35', date:'2025/8/21', sent:3464,  open:1498, click:76, unsub:0,  openRate:43.45, clickRate:5.07, ocRate:2.20 },
+  { no:'NO34', date:'2025/8/14', sent:3444,  open:1712, click:108, unsub:1, openRate:49.85, clickRate:6.31, ocRate:3.15 },
+  { no:'NO33', date:'2025/8/7',  sent:3438,  open:1599, click:166, unsub:1, openRate:46.67, clickRate:10.38,ocRate:4.58 },
+  { no:'NO32', date:'2025/7/31', sent:3401,  open:1659, click:111, unsub:1, openRate:48.82, clickRate:6.69, ocRate:3.27 },
+  { no:'NO31', date:'2025/7/24', sent:3378,  open:1650, click:97, unsub:0,  openRate:49.01, clickRate:5.88, ocRate:2.88 },
+  { no:'NO30', date:'2025/7/17', sent:3346,  open:1619, click:138, unsub:2, openRate:48.53, clickRate:8.52, ocRate:4.14 },
+  { no:'NO29', date:'2025/7/10', sent:3291,  open:1664, click:112, unsub:1, openRate:50.73, clickRate:6.73, ocRate:3.41 },
+  { no:'NO28', date:'2025/7/3',  sent:3277,  open:1591, click:117, unsub:3, openRate:48.71, clickRate:7.35, ocRate:3.58 },
+  { no:'NO27', date:'2025/6/26', sent:3206,  open:1583, click:145, unsub:1, openRate:49.59, clickRate:9.16, ocRate:4.54 },
+  { no:'NO26', date:'2025/6/19', sent:3161,  open:1616, click:130, unsub:3, openRate:51.30, clickRate:9.72, ocRate:4.98 },
+  { no:'NO25', date:'2025/6/12', sent:3133,  open:1513, click:91, unsub:3,  openRate:48.46, clickRate:6.01, ocRate:2.91 },
+  { no:'NO24', date:'2025/6/5',  sent:3089,  open:1510, click:111, unsub:1, openRate:49.01, clickRate:7.35, ocRate:3.60 },
+  { no:'NO23', date:'2025/5/29', sent:3007,  open:1443, click:89, unsub:1,  openRate:48.13, clickRate:6.17, ocRate:2.97 },
+  { no:'NO22', date:'2025/5/22', sent:2963,  open:1492, click:159, unsub:2, openRate:50.59, clickRate:10.66,ocRate:5.39 },
+  { no:'NO21', date:'2025/5/15', sent:2856,  open:1442, click:120, unsub:2, openRate:50.72, clickRate:8.32, ocRate:4.22 },
+  { no:'NO20', date:'2025/5/8',  sent:2800,  open:1385, click:181, unsub:1, openRate:49.78, clickRate:6.93, ocRate:3.45 },
+  { no:'NO19', date:'2025/5/1',  sent:2732,  open:1398, click:162, unsub:2, openRate:51.34, clickRate:11.59,ocRate:5.95 },
+  { no:'NO18', date:'2025/4/24', sent:2647,  open:1323, click:92, unsub:0,  openRate:50.15, clickRate:6.95, ocRate:3.49 },
+  { no:'NO17', date:'2025/4/17', sent:2624,  open:1282, click:138, unsub:1, openRate:49.08, clickRate:10.76,ocRate:5.28 },
+  { no:'NO16', date:'2025/4/10', sent:2560,  open:1295, click:105, unsub:1, openRate:50.84, clickRate:8.11, ocRate:4.12 },
+  { no:'NO15', date:'2025/4/3',  sent:2506,  open:1014, click:89, unsub:0,  openRate:40.63, clickRate:8.78, ocRate:3.57 },
+  { no:'NO14', date:'2025/3/27', sent:2622,  open:1100, click:132, unsub:2, openRate:44.35, clickRate:12.00,ocRate:5.32 },
+  { no:'NO13', date:'2025/3/20', sent:2445,  open:1239, click:161, unsub:2, openRate:50.80, clickRate:12.99,ocRate:6.60 },
+  { no:'NO12', date:'2025/3/12', sent:2434,  open:1063, click:141, unsub:2, openRate:43.93, clickRate:13.26,ocRate:6.08 },
+  { no:'NO11', date:'2025/3/5',  sent:2411,  open:976,  click:57, unsub:0,  openRate:40.84, clickRate:5.84, ocRate:2.38 },
+  { no:'NO10', date:'2025/2/27', sent:2031,  open:740,  click:30, unsub:0,  openRate:40.90, clickRate:5.83, ocRate:2.39 },
+  { no:'NO9',  date:'2025/2/20', sent:1803,  open:881,  click:109, unsub:0, openRate:52.17, clickRate:12.61,ocRate:6.58 },
+  { no:'NO8',  date:'2025/2/13', sent:1612,  open:843,  click:148, unsub:1, openRate:52.56, clickRate:17.56,ocRate:9.23 },
+  { no:'NO7',  date:'2025/2/6',  sent:1490,  open:653,  click:67, unsub:1,  openRate:44.15, clickRate:11.18,ocRate:4.94 },
+  { no:'NO6',  date:'2025/1/30', sent:1456,  open:750,  click:82, unsub:1,  openRate:51.76, clickRate:10.93,ocRate:5.66 },
+  { no:'NO5',  date:'2025/1/23', sent:1430,  open:779,  click:72, unsub:4,  openRate:54.78, clickRate:9.24, ocRate:5.06 },
+  { no:'NO3',  date:'2025/1/9',  sent:1317,  open:696,  click:164, unsub:3, openRate:54.33, clickRate:17.06,ocRate:9.27 },
+  { no:'NO2',  date:'2025/1/2',  sent:1062,  open:534,  click:94, unsub:2,  openRate:49.26, clickRate:20.66,ocRate:9.43 },
+  { no:'NO1',  date:'2024/12/26',sent:576,   open:295,  click:102, unsub:0, openRate:51.22, clickRate:10.92,ocRate:5.38 },
 ];
 
 const AVG_OPEN = 46.72, AVG_CLICK = 7.77, AVG_OC = 4.14;
@@ -549,18 +549,23 @@ document.getElementById('latestMetrics').innerHTML =
   '<div class="metric"><div class="metric-val">' + latest.sent.toLocaleString() + '</div><div class="metric-lbl">成功發送</div>' + deltaHtml(latest.sent, prev.sent, '') + '</div>' +
   '<div class="metric"><div class="metric-val" style="color:var(--pink-text)">' + latest.open.toLocaleString() + '</div><div class="metric-lbl">開信人數</div>' + deltaHtml(latest.open, prev.open, '') + '</div>' +
   '<div class="metric"><div class="metric-val" style="color:var(--pink-text)">' + latest.openRate.toFixed(2) + '%</div><div class="metric-lbl">開信率</div>' + vsAvgHtml(latest.openRate, AVG_OPEN) + '</div>' +
-  '<div class="metric"><div class="metric-val">' + latest.ocRate.toFixed(2) + '%</div><div class="metric-lbl">開點率</div>' + vsAvgHtml(latest.ocRate, AVG_OC) + '</div>';
+  '<div class="metric"><div class="metric-val">' + latest.ocRate.toFixed(2) + '%</div><div class="metric-lbl">開點率</div>' + vsAvgHtml(latest.ocRate, AVG_OC) + '</div>' +
+  '<div class="metric"><div class="metric-val">' + latest.unsub.toLocaleString() + '</div><div class="metric-lbl">當期退訂</div>' + deltaHtml(latest.unsub, prev.unsub, '') + '</div>';
 
 const totalSent = allData.reduce((a,d)=>a+d.sent,0);
+const totalUnsub = allData.reduce((a,d)=>a+d.unsub,0);
 const avgOpen = (allData.reduce((a,d)=>a+d.openRate,0)/allData.length).toFixed(1);
 const avgClick = (allData.reduce((a,d)=>a+d.clickRate,0)/allData.length).toFixed(1);
 const maxOpen = allData.reduce((mx,d)=>d.openRate>mx.openRate?d:mx, allData[0]);
+const unsubRate = (totalUnsub / totalSent * 100).toFixed(2);
 
 document.getElementById('overallKpi').innerHTML =
   '<div class="kpi"><div class="kpi-label">累計發送總數</div><div class="kpi-value">' + (totalSent/10000).toFixed(1) + '萬</div><div class="kpi-sub">共 ' + allData.length + ' 期</div></div>' +
   '<div class="kpi"><div class="kpi-label">歷期平均開信率</div><div class="kpi-value">' + avgOpen + '%</div><div class="kpi-sub">全 79 期均值</div></div>' +
   '<div class="kpi"><div class="kpi-label">歷期平均點擊率</div><div class="kpi-value">' + avgClick + '%</div><div class="kpi-sub">全 79 期均值</div></div>' +
-  '<div class="kpi"><div class="kpi-label">最高開信率</div><div class="kpi-value">' + maxOpen.openRate.toFixed(1) + '%</div><div class="kpi-sub up">' + maxOpen.no + '・' + maxOpen.date + '</div></div>';
+  '<div class="kpi"><div class="kpi-label">最高開信率</div><div class="kpi-value">' + maxOpen.openRate.toFixed(1) + '%</div><div class="kpi-sub up">' + maxOpen.no + '・' + maxOpen.date + '</div></div>' +
+  '<div class="kpi"><div class="kpi-label">累計退訂人數</div><div class="kpi-value">' + totalUnsub.toLocaleString() + '</div><div class="kpi-sub">全 ' + allData.length + ' 期累計</div></div>' +
+  '<div class="kpi"><div class="kpi-label">累計退訂率</div><div class="kpi-value">' + unsubRate + '%</div><div class="kpi-sub">退訂數 ／ 累計發送數</div></div>';
 
 const recent10 = allData.slice(0,10).reverse();
 const gridColor = 'rgba(255,255,255,0.06)';
